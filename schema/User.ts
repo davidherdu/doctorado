@@ -11,8 +11,8 @@ import {
 export const User = list({
 	access: {
 		operation: {
-			query: () => true,
-			create: () => true,
+			query: isAdmin,
+			create: isAdmin,
 			update: isAdmin,
 			delete: isAdmin,
 		},
