@@ -1,15 +1,28 @@
 import { list } from '@keystone-6/core';
-import { allowAll } from '@keystone-6/core/access';
+import { isAdmin } from '../security/rules';
 
 import {
 	integer,
-	relationship
+	relationship,
+	timestamp
 } from '@keystone-6/core/fields';
 
 import { document } from '@keystone-6/fields-document';
 
 export const Nota = list({
-	access: allowAll,
+	access: {
+		operation: {
+			query: isAdmin,
+			create: isAdmin,
+			update: isAdmin,
+			delete: isAdmin,
+		},
+	},
+	ui: {
+		listView: {
+			initialColumns: ['nota', 'tags'],
+		}
+	},
 	fields: {
 		pagina: integer(),
 		// this can be helpful to find out all the Posts associated with a Tag
@@ -43,6 +56,9 @@ export const Nota = list({
 				inlineConnect: true,
 				inlineCreate: { fields: ['nombre'] },
 			},
+		}),
+		createdAt: timestamp({
+			defaultValue: { kind: 'now' },
 		}),
 	},
 });

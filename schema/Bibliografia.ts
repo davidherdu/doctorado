@@ -1,22 +1,35 @@
 import { list } from '@keystone-6/core';
-import { allowAll } from '@keystone-6/core/access';
+import { isAdmin } from '../security/rules';
 
 import {
 	text,
 	relationship,
 	integer,
 	select,
+	timestamp
 } from '@keystone-6/core/fields';
 
 export const Bibliografia = list({
-	access: allowAll,
+	access: {
+		operation: {
+			query: isAdmin,
+			create: isAdmin,
+			update: isAdmin,
+			delete: isAdmin,
+		},
+	},
+	ui: {
+		listView: {
+			initialColumns: ['autor', 'titulo', 'fuente'],
+		}
+	},
 	fields: {
 		autor: text(),
 		titulo: text(),
 		anio: integer({
 			label: 'Año',
 		}),
-		revista: text(),
+		fuente: text(),
 		paginas: text(),
 		tipo: select({
 			options: [
@@ -64,6 +77,9 @@ export const Bibliografia = list({
 				inlineConnect: true,
 				inlineCreate: { fields: ['name'] },
 			},*/
+		}),
+		createdAt: timestamp({
+			defaultValue: { kind: 'now' },
 		}),
 	},
 });

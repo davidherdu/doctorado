@@ -1,29 +1,46 @@
 import { list } from '@keystone-6/core';
-import { allowAll } from '@keystone-6/core/access';
+import { isAdmin, rules } from '../security/rules';
 
 import {
 	text,
 	password,
 	timestamp,
+	checkbox
 } from '@keystone-6/core/fields';
 
 export const User = list({
-	access: allowAll,
-
+	access: {
+		operation: {
+			query: () => true,
+			create: () => true,
+			update: isAdmin,
+			delete: isAdmin,
+		},
+		filter: {
+			query: rules.canManageUsers
+		}
+	},
+	ui: {
+		listView: {
+			initialColumns: ['name', 'email', 'isAdmin'],
+		},
+		labelField: 'email',
+	},
 	fields: {
 		name: text({ validation: { isRequired: true } }),
-
 		email: text({
 			validation: { isRequired: true },
-			// by adding isIndexed: 'unique', we're saying that no user can have the same
-			// email as another user - this may or may not be a good idea for your project
 			isIndexed: 'unique',
 		}),
-
 		password: password({ validation: { isRequired: true } }),
-
+		isAdmin: checkbox({
+			access: {
+				read: isAdmin,
+				create: isAdmin,
+				update: isAdmin,
+			},
+		}),
 		createdAt: timestamp({
-			// this sets the timestamp to Date.now() when the user is first created
 			defaultValue: { kind: 'now' },
 		}),
 	},
