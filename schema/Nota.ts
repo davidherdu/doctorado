@@ -25,7 +25,6 @@ export const Nota = list({
   },
   fields: {
     pagina: integer(),
-    // this can be helpful to find out all the Posts associated with a Tag
     bibliografia: relationship({ ref: 'Bibliografia.notas', many: false }),
     nota: document({
       formatting: true,
@@ -39,15 +38,9 @@ export const Nota = list({
       links: true,
       dividers: true,
     }),
-    // with this field, you can add some Tags to Posts
     tags: relationship({
-      // we could have used 'Tag', but then the relationship would only be 1-way
       ref: 'Tag.notas',
-
-      // a Post can have many Tags, not just one
       many: true,
-
-      // this is some customisations for changing how this will look in the AdminUI
       ui: {
         displayMode: 'cards',
         cardFields: ['nombre'],

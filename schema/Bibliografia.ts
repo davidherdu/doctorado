@@ -40,44 +40,7 @@ export const Bibliografia = list({
       ui: { displayMode: 'segmented-control' },
       validation: { isRequired: true },
     }),
-
-    // with this field, you can set a User as the author for a Post
-    /*author: relationship({
-      // we could have used 'User', but then the relationship would only be 1-way
-      ref: 'User.posts',
-
-      // this is some customisations for changing how this will look in the AdminUI
-      ui: {
-        displayMode: 'cards',
-        cardFields: ['name', 'email'],
-        inlineEdit: { fields: ['name', 'email'] },
-        linkToItem: true,
-        inlineConnect: true,
-      },
-
-      // a Post can only have one author
-      //   this is the default, but we show it here for verbosity
-      many: false,
-    }),*/
-
-    // with this field, you can add some Tags to Posts
-    notas: relationship({
-      // we could have used 'Tag', but then the relationship would only be 1-way
-      ref: 'Nota.bibliografia',
-
-      // a Post can have many Tags, not just one
-      many: true,
-
-      // this is some customisations for changing how this will look in the AdminUI
-      /*ui: {
-        displayMode: 'cards',
-        cardFields: ['nombre'],
-        inlineEdit: { fields: ['nombre'] },
-        linkToItem: true,
-        inlineConnect: true,
-        inlineCreate: { fields: ['name'] },
-      },*/
-    }),
+    notas: relationship({ ref: 'Nota.bibliografia', many: true }),
     createdAt: timestamp({
       defaultValue: { kind: 'now' },
     }),
