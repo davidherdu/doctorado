@@ -5,12 +5,6 @@ import { rules } from './security/rules';
 
 export default withAuth(
   config({
-    /*server: {
-      cors: {
-        origin: [...process.env.CORS_WHITELIST.split(',')],
-        credentials: true,
-      }
-    },*/
     /*db: {
       provider: 'mysql',
       url: 'mysql://doctorado:password123456@localhost:3310/doctorado',
