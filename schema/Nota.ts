@@ -25,7 +25,16 @@ export const Nota = list({
   },
   fields: {
     pagina: integer(),
-    bibliografia: relationship({ ref: 'Bibliografia.notas', many: false }),
+    bibliografia: relationship({
+      ref: 'Bibliografia.notas',
+      many: false,
+      ui: {
+        hideCreate: true,
+        displayMode: 'cards',
+        cardFields: ['titulo'],
+        linkToItem: true,
+      },
+    }),
     nota: document({
       formatting: true,
       layouts: [
