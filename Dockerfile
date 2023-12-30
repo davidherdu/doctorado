@@ -23,7 +23,7 @@
 
 
 # https://docs.docker.com/samples/library/node/
-ARG NODE_VERSION=16.4.0
+ARG NODE_VERSION=16.14.0
 # https://github.com/Yelp/dumb-init/releases
 ARG DUMB_INIT_VERSION=1.2.2
 
