@@ -1,5 +1,11 @@
+#FROM node:16
+#WORKDIR /usr/app
+#COPY package*.json ./
+#COPY . .
+#CMD yarn dev -p 3000
+
 # Use the official Node.js image as the base image
-FROM node:18
+FROM node:16
 
 # Set the working directory
 WORKDIR /usr/app
