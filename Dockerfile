@@ -5,13 +5,13 @@
 #CMD yarn dev -p 3000
 
 # Use the official Node.js image as the base image
-FROM node:16
+FROM node:18.16.0-alpine3.17
 
 # Set the working directory
 WORKDIR /usr/app
 
 # Copy package.json and package-lock.json to install dependencies
-COPY package*.json ./
+COPY package*.json .
 
 # Install app dependencies
 RUN npm install
