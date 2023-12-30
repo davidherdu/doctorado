@@ -28,7 +28,7 @@ ARG NODE_VERSION=16.13.2
 ARG DUMB_INIT_VERSION=1.2.2
 
 # Build container
-FROM node:${NODE_VERSION}-alpine AS build
+FROM node:18.16.0-alpine3.17
 ARG DUMB_INIT_VERSION
 
 WORKDIR /home/node
@@ -44,7 +44,7 @@ RUN yarn install
 RUN yarn build && yarn cache clean
 
 # Runtime container
-FROM node:${NODE_VERSION}-alpine
+FROM node:18.16.0-alpine3.17
 
 WORKDIR /home/node
 
