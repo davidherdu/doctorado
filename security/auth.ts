@@ -1,35 +1,29 @@
+import { randomBytes } from 'crypto';
 import { createAuth } from '@keystone-6/auth';
 import { statelessSessions } from '@keystone-6/core/session';
 
 let sessionSecret = process.env.SESSION_SECRET;
-if (!sessionSecret) {
-  if (process.env.NODE_ENV === 'production') {
-    throw new Error(
-      'The SESSION_SECRET environment variable must be set in production'
-    );
-  } else {
-    sessionSecret = '-- DEV COOKIE SECRET; CHANGE ME --';
-  }
+if (!sessionSecret && process.env.NODE_ENV !== 'production') {
+  sessionSecret = randomBytes(32).toString('hex');
 }
 
 const { withAuth } = createAuth({
   listKey: 'User',
   identityField: 'email',
-  sessionData: 'id name isAdmin email',
+  sessionData: 'name isAdmin',
   secretField: 'password',
   initFirstItem: {
     fields: ['name', 'email', 'password'],
     itemData: {
       isAdmin: true
     }
-  }
+  },
 });
 
 let sessionMaxAge = 60 * 60 * 24 * 30; // 30 days
 const session = statelessSessions({
   maxAge: sessionMaxAge,
   secret: sessionSecret!,
-  domain: process.env.DOMAIN_URL ? process.env.DOMAIN_URL : 'localhost'
 });
 
 export { withAuth, session };

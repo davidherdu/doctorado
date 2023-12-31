@@ -6,7 +6,8 @@
     "dev": "keystone dev",
     "start": "keystone start",
     "build": "keystone build",
-    "postinstall": "patch-package && keystone postinstall"
+    "postinstall": "patch-package && keystone postinstall",
+    "start:migrate:prod": "prisma migrate deploy && yarn start"
   },
   "dependencies": {
     "@keystone-6/auth": "^7.0.0",

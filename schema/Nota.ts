@@ -32,7 +32,9 @@ export const Nota = list({
         hideCreate: true,
         displayMode: 'cards',
         cardFields: ['titulo'],
+        inlineEdit: { fields: ['titulo'] },
         linkToItem: true,
+        inlineConnect: true,
       },
     }),
     nota: document({
