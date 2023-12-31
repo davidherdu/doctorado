@@ -20,6 +20,16 @@ services:
       # Where our data will be persisted
     volumes:
       - my-db:/var/lib/mysql
+
+  doctorado-web-app:
+    depends_on:
+      - db
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - DATABASE_URL=postgres://doctorado:doctorado1234@db:5432/doctorado
+
 # Names our volume
 volumes:
   my-db:
