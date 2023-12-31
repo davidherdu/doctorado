@@ -313,7 +313,7 @@ input TagRelateToManyForCreateInput {
 
 type Tag {
   id: ID!
-  nombre: String
+  palabra: String
   notas(where: NotaWhereInput! = {}, orderBy: [NotaOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: NotaWhereUniqueInput): [Nota!]
   notasCount(where: NotaWhereInput! = {}): Int
   createdAt: DateTime
@@ -328,19 +328,19 @@ input TagWhereInput {
   OR: [TagWhereInput!]
   NOT: [TagWhereInput!]
   id: IDFilter
-  nombre: StringFilter
+  palabra: StringFilter
   notas: NotaManyRelationFilter
   createdAt: DateTimeNullableFilter
 }
 
 input TagOrderByInput {
   id: OrderDirection
-  nombre: OrderDirection
+  palabra: OrderDirection
   createdAt: OrderDirection
 }
 
 input TagUpdateInput {
-  nombre: String
+  palabra: String
   notas: NotaRelateToManyForUpdateInput
   createdAt: DateTime
 }
@@ -351,7 +351,7 @@ input TagUpdateArgs {
 }
 
 input TagCreateInput {
-  nombre: String
+  palabra: String
   notas: NotaRelateToManyForCreateInput
   createdAt: DateTime
 }

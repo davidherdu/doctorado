@@ -46,7 +46,7 @@ model Nota {
 
 model Tag {
   id        String    @id @default(cuid())
-  nombre    String    @default("")
+  palabra   String    @default("")
   notas     Nota[]    @relation("Nota_tags")
   createdAt DateTime? @default(now())
 }

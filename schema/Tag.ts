@@ -16,11 +16,8 @@ export const Tag = list({
       delete: isAdmin,
     },
   },
-  ui: {
-    isHidden: true,
-  },
   fields: {
-    nombre: text(),
+    palabra: text(),
     notas: relationship({ ref: 'Nota.tags', many: true }),
     createdAt: timestamp({
       defaultValue: { kind: 'now' },

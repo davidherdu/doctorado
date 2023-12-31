@@ -54,11 +54,11 @@ export const Nota = list({
       many: true,
       ui: {
         displayMode: 'cards',
-        cardFields: ['nombre'],
-        inlineEdit: { fields: ['nombre'] },
+        cardFields: ['palabra'],
+        inlineEdit: { fields: ['palabra'] },
         linkToItem: true,
         inlineConnect: true,
-        inlineCreate: { fields: ['nombre'] },
+        inlineCreate: { fields: ['palabra'] },
       },
     }),
     createdAt: timestamp({
