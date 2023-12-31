@@ -15,7 +15,7 @@ export default withAuth(
       url: process.env.DATABASE_URL || 'postgres://doctorado:doctorado1234@localhost:5432/doctorado',
       useMigrations: true
     },
-    //ui: { isAccessAllowed: rules.canManageUsers },
+    ui: { isAccessAllowed: rules.canUseAdminUI },
     lists,
     session: session,
   })
