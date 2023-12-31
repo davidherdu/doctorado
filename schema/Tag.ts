@@ -16,6 +16,9 @@ export const Tag = list({
       delete: isAdmin,
     },
   },
+  ui: {
+    isHidden: true,
+  },
   fields: {
     palabra: text(),
     notas: relationship({ ref: 'Nota.tags', many: true }),
