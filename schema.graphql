@@ -228,7 +228,7 @@ input NotaRelateToManyForCreateInput {
 
 type Nota {
   id: ID!
-  pagina: Int
+  paginas: String
   bibliografia: Bibliografia
   nota: Nota_nota_Document
   tags(where: TagWhereInput! = {}, orderBy: [TagOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: TagWhereUniqueInput): [Tag!]
@@ -249,7 +249,7 @@ input NotaWhereInput {
   OR: [NotaWhereInput!]
   NOT: [NotaWhereInput!]
   id: IDFilter
-  pagina: IntNullableFilter
+  paginas: StringFilter
   bibliografia: BibliografiaWhereInput
   tags: TagManyRelationFilter
   createdAt: DateTimeNullableFilter
@@ -263,12 +263,12 @@ input TagManyRelationFilter {
 
 input NotaOrderByInput {
   id: OrderDirection
-  pagina: OrderDirection
+  paginas: OrderDirection
   createdAt: OrderDirection
 }
 
 input NotaUpdateInput {
-  pagina: Int
+  paginas: String
   bibliografia: BibliografiaRelateToOneForUpdateInput
   nota: JSON
   tags: TagRelateToManyForUpdateInput
@@ -294,7 +294,7 @@ input NotaUpdateArgs {
 }
 
 input NotaCreateInput {
-  pagina: Int
+  paginas: String
   bibliografia: BibliografiaRelateToOneForCreateInput
   nota: JSON
   tags: TagRelateToManyForCreateInput

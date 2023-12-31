@@ -34,7 +34,7 @@ model Bibliografia {
 
 model Nota {
   id             String        @id @default(cuid())
-  pagina         Int?
+  paginas        String        @default("")
   bibliografia   Bibliografia? @relation("Nota_bibliografia", fields: [bibliografiaId], references: [id])
   bibliografiaId String?       @map("bibliografia")
   nota           Json          @default("[{\"type\":\"paragraph\",\"children\":[{\"text\":\"\"}]}]")

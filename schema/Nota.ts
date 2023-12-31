@@ -2,7 +2,7 @@ import { list } from '@keystone-6/core';
 import { isAdmin } from '../security/rules';
 
 import {
-  integer,
+  text,
   relationship,
   timestamp
 } from '@keystone-6/core/fields';
@@ -24,7 +24,7 @@ export const Nota = list({
     }
   },
   fields: {
-    pagina: integer(),
+    paginas: text(),
     bibliografia: relationship({
       ref: 'Bibliografia.notas',
       many: false,
